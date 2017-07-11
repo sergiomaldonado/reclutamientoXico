@@ -83,9 +83,10 @@ function agregarEstudio() {
   idest++;
 }
 
-/*$(document).ready(function(){
-  $('.modal').modal();
-});*/
+$(document).ready(function(){
+  //$('.modal').modal();
+  $('#sexo').material_select();
+});
 
 function aplicar() {
   let nombre = $('#nombre').val();
