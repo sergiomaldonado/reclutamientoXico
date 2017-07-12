@@ -216,10 +216,11 @@
                         <label for="desempeñoPrimaria">Desempeño y logros</label>
                       </div>
                       <div class="input-field col s3">
-                        <label for=""></label>
+                        <label style="transform:translate(0px, -30px);" for="fechaInicioPrimaria">Fecha de inicio</label>
                         <input id="fechaInicioPrimaria" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinPrimaria">Fecha de término</label>
                         <input id="fechaFinPrimaria" type="date" class="datepicker">
                       </div>
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarPrimaria()">Agregar primaria</a>
@@ -240,10 +241,11 @@
                         <label for="desempeñoSecundaria">Desempeño y logros</label>
                       </div>
                       <div class="input-field col s3">
-                        <label for=""></label>
+                        <label style="transform:translate(0px, -30px);" for="fechaInicioPrimaria">Fecha de inicio</label>
                         <input id="fechaInicioSecundaria" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinSecundaria">Fecha de término</label>
                         <input id="fechaFinSecundaria" type="date" class="datepicker">
                       </div>
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarSecundaria()">Agregar secundaria</a>
@@ -264,10 +266,11 @@
                         <label for="especialidadPreparatoria">Especialidad</label>
                       </div>
                       <div class="input-field col s3">
-                        <label for=""></label>
+                        <label style="transform:translate(0px, -30px);" for="">Fecha de inicio</label>
                         <input id="fechaInicioPreparatoria" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinPreparatoria">Fecha de término</label>
                         <input id="fechaFinPreparatoria" type="date" class="datepicker">
                       </div>
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarPreparatoria()">Agregar preparatoria</a>
@@ -292,10 +295,11 @@
                         <label for="desempeñoUniversidad">Desempeño y logros</label>
                       </div>
                       <div class="input-field col s6">
-                        <label for=""></label>
+                        <label style="transform:translate(0px, -30px);" for="">Fecha de inicio</label>
                         <input id="fechaInicioUniversidad" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s6">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinUniversidad">Fecha de término</label>
                         <input id="fechaFinUniversidad" type="date" class="datepicker">
                       </div>
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarUniversidad()">Agregar universidad</a>
@@ -316,10 +320,11 @@
                         <label for="ciudadOtro">Ciudad</label>
                       </div>
                       <div class="input-field col s3">
-                        <label for=""></label>
+                        <label style="transform:translate(0px, -30px);" for="fechaInicioOtro">Fecha de inicio</label>
                         <input id="fechaInicioOtro" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinOtro">Fecha de término</label>
                         <input id="fechaFinOtro" type="date" class="datepicker">
                       </div>
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarOtro()">Agregar</a>
@@ -390,8 +395,8 @@
                         <label for="ciudadEmpresa">Ciudad</label>
                       </div>
                       <div class="input-field col s6">
-                        <input id="estado" type="text" class="validate">
-                        <label for="estado">Estado</label>
+                        <input id="estadoEmpresa" type="text" class="validate">
+                        <label for="estadoEmpresa">Estado</label>
                       </div>
                       <div class="input-field col s6">
                         <input id="telefonoEmpresa" type="text" class="validate">
@@ -406,15 +411,16 @@
                         <label for="salarioFinalEmpresa">Salario final</label>
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaInicioEmpresa">Fecha de inicio en la empresa</label>
                         <input id="fechaInicioEmpresa" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s3">
+                        <label style="transform:translate(0px, -30px);" for="fechaFinEmpresa">Fecha de término en la empresa</label>
                         <input id="fechaFinEmpresa" type="date" class="datepicker">
                       </div>
-
                       <div class="input-field col s6">
                         <input id="nombreSupervidor" type="text" class="validate">
-                        <label for="nombreSupervidor">Nombre del supervisor o jefe inmediato</label>
+                        <label for="nombreSupervisor">Nombre del supervisor o jefe inmediato</label>
                       </div>
                       <div class="input-field col s6">
                         <input id="puestoSupervidor" type="text" class="validate">
@@ -463,26 +469,31 @@
                           <li>
                             <div class="collapsible-header"><i class="material-icons"></i>Otros puestos</div>
                             <div class="collapsible-body">
-                              <div class="input-field col s6">
-                                <input id="nombrePuesto" type="text" class="validate">
-                                <label for="nombrePuesto">Puesto</label>
-                              </div>
-                              <div class="input-field col s3">
-                                <label for=""></label>
-                                <input id="fechaInicioPuesto" type="date" class="datepicker">
-                              </div>
-                              <div class="input-field col s3">
-                                <input id="fechaFinPuesto" type="date" class="datepicker">
-                              </div>
-                              <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarPuesto()">Agregar</a>
+                              <ul id="contenedorPuestos" class="collection with-header">
+                                <li class="collection-header">
+                                  <div class="input-field col s6">
+                                    <input id="nombrePuesto" type="text" class="validate">
+                                    <label for="nombrePuesto">Puesto</label>
+                                  </div>
+                                  <div class="input-field col s3">
+                                    <label style="transform:translate(0px, -30px);" for="fechaInicioPuesto">Fecha de inicio</label>
+                                    <input id="fechaInicioPuesto" type="date" class="datepicker">
+                                  </div>
+                                  <div class="input-field col s3">
+                                    <label style="transform:translate(0px, -30px);" for="fechaFinPuesto">Fecha de término</label>
+                                    <input id="fechaFinPuesto" type="date" class="datepicker">
+                                  </div>
+                                  <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarPuesto()">Agregar</a>
+                                </li>
+                              </ul>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarEmpresa()">Agregar</a>
+                      <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarExperiencia()">Agregar</a>
                     </li>
                   </ul>
-                  <ul class="collection with-header">
+                  <ul id="contenedorReferenciasExtra" class="collection with-header">
                     <li class="collection-header"><h5>Referencias extras</h5>
                       <div class="input-field col s6">
                         <input id="nombreReferenciaExtra" type="text" class="validate">

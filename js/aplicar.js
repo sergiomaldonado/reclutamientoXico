@@ -1,59 +1,21 @@
-var experiencias = [];
-var primarias = [];
-var secundarias = [];
-var preparatorias = [];
-var universidades = [];
-var idiomas = [];
-var otros = [];
-var otrasref = [];
-var idexp = 0;
-var idprim = 0;
-var idsec = 0;
-var idprepa = 0;
-var iduniv = 0;
-var idotro = 0;
-var ididioma = 0;
-var idotraref = 0;
-
-function borrarExperiencia(idExp) {
-  $('#experiencia-'+idExp).remove();
-  experiencias.splice(idExp, 1);
-  idexp = idexp-1;
-}
-
-function agregarExperiencia() {
-  let empresa = $('#empresa').val();
-  let titulo = $('#titulo').val();
-  let descripcion = $('#descripcion').val();
-
-  let li = $('<li/>', {'class': 'collection-item', 'id':'experiencia-'+idexp});
-  let divP = $('<div/>');
-  let div = '<div class="col s6">' +
-              '<p>'+empresa+'</p>' +
-            '</div>' +
-            '<div class=" col s6">' +
-              '<p>'+titulo+'</p>' +
-            '</div>' +
-            '<div class="col s12">' +
-              '<p>'+descripcion+'</p>' +
-            '</div>';
-  let a = $('<a/>', {'onclick': 'borrarExperiencia("'+idexp+'")'});
-  let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
-
-  let experiencia = {
-    empresa: empresa,
-    titulo: titulo,
-    descripcion: descripcion
-  }
-  experiencias.push(experiencia);
-
-  a.append(i);
-  divP.append(div).append(a);
-  li.append(divP);
-  $('#contenedorHistorial').append(li);
-
-  idexp++;
-}
+var primarias = [],
+    secundarias = [],
+    preparatorias = [],
+    universidades = [],
+    otros = [],
+    idiomas = [],
+    puestos = [],
+    experiencias = [],
+    otrasref = [],
+    idprim = 0,
+    idsec = 0,
+    idprepa = 0,
+    iduniv = 0,
+    idotro = 0,
+    ididioma = 0,
+    idpuesto = 0,
+    idexp = 0,
+    idotraref = 0;
 
 function borrarPrimaria(idPrim) {
   $('#primaria-'+idPrim).remove();
@@ -411,9 +373,184 @@ function agregarIdioma() {
   $('#comentariosIdioma').val('');
 }
 
-function borrarReferenciaExtra(idOtrasRef) {
-  $('#otrasref-'+idOtrasRef).remove();
-  otrasref.splice(idOtrasRef, 1);
+function borrarPuesto(idPuesto) {
+  $('#puesto-'+idPuesto).remove();
+  puestos.splice(idPuesto, 1);
+  idpuesto--;
+}
+
+function agregarPuesto() {
+  let nombrePuesto = $('#nombrePuesto').val();
+  let fechaInicioPuesto = $('#fechaInicioPuesto').val();
+  let fechaFinPuesto = $('#fechaFinPuesto').val();
+
+  let li = $('<li/>', {'class': 'collection-item', 'id':'puesto-'+idpuesto});
+  let divP = $('<div/>');
+  let div = '<div class="col s6">' +
+              '<p>'+nombrePuesto+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+fechaInicioPuesto+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+fechaFinPuesto+'</p>' +
+            '</div>';
+  let a = $('<a/>', {'onclick': 'borrarPuesto("'+idpuesto+'")'});
+  let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
+
+  let puesto = {
+    nombre: nombrePuesto,
+    fechaInicio: fechaInicioPuesto,
+    fechaFin: fechaFinPuesto
+  }
+  puestos.push(puesto);
+
+  a.append(i);
+  divP.append(div).append(a);
+  li.append(divP);
+  $('#contenedorPuestos').append(li);
+
+  idpuesto++;
+}
+
+function borrarExperiencia(idExp) {
+  $('#experiencia-'+idExp).remove();
+  experiencias.splice(idExp, 1);
+  idexp = idexp-1;
+}
+
+function agregarExperiencia() {
+  let empresa = $('#empresa').val();
+  let dedicaEmpresa = $('#dedicaEmpresa').val();
+  let ultimoPuestoEmpresa = $('#ultimoPuestoEmpresa').val();
+  let direccionEmpresa = $('#direccionEmpresa').val();
+  let ciudadEmpresa = $('#ciudadEmpresa').val();
+  let estadoEmpresa = $('#estadoEmpresa').val();
+  let telefonoEmpresa = $('#telefonoEmpresa').val();
+  let salarioInicialEmpresa = $('#salarioInicialEmpresa').val();
+  let salarioFinalEmpresa = $('#salarioFinalEmpresa').val();
+  let fechaInicioEmpresa = $('#fechaInicioEmpresa').val();
+  let fechaFinEmpresa = $('#fechaFinEmpresa').val();
+  let nombreSupervisor = $('#nombreSupervisor').val();
+  let puestoSupervidor = $('#puestoSupervidor').val();
+  let queDiriaTuJefe = $('#queDiriaTuJefe').val();
+  let calificariaDesempeño = $('#calificariaDesempeño').val();
+  let queTeGustabaMas = $('#queTeGustabaMas').val();
+  let queMenosDisfrutaba = $('#queMenosDisfrutaba').val();
+  let razonPrincipalDejasteTrabajo = $('#razonPrincipalDejasteTrabajo').val();
+  let otraCircunstancia = $('#otraCircunstancia').val();
+  let permisoVerificarReferencia;
+
+  if( $('#permisoVerificarReferencia').prop('checked') ) {
+    permisoVerificarReferencia = true;
+  }else {
+    permisoVerificarReferencia = false;
+  }
+
+  let li = $('<li/>', {'class': 'collection-item', 'id':'experiencia-'+idexp});
+  let divP = $('<div/>');
+  let div = '<div class="col s6">' +
+              '<p>'+empresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+dedicaEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+ultimoPuestoEmpresa+'</p>' +
+            '</div>' +
+            '<div class=" col s6">' +
+              '<p>'+direccionEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+ciudadEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+estadoEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+telefonoEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+salarioInicialEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+salarioFinalEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+fechaInicioEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+fechaFinEmpresa+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+nombreSupervisor+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+puestoSupervidor+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+queDiriaTuJefe+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+calificariaDesempeño+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+queTeGustabaMas+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+queMenosDisfrutaba+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+razonPrincipalDejasteTrabajo+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+otraCircunstancia+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+permisoVerificarReferencia+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+salarioInicialEmpresa+'</p>' +
+            '</div>';
+  let a = $('<a/>', {'onclick': 'borrarExperiencia("'+idexp+'")'});
+  let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
+
+  let experiencia = {
+    empresa: empresa,
+    dedica: dedicaEmpresa,
+    ultimoPuesto: ultimoPuestoEmpresa,
+    direccion: direccionEmpresa,
+    ciudad: ciudadEmpresa,
+    estado: estadoEmpresa,
+    telefono: telefonoEmpresa,
+    salarioInicial: salarioInicialEmpresa,
+    salarioFinal: salarioFinalEmpresa,
+    fechaInicio: fechaInicioEmpresa,
+    fechaFin: fechaFinEmpresa,
+    nombreSupervisor: nombreSupervisor,
+    puestoSupervidor: puestoSupervidor,
+    queDiriaTuJefe: queDiriaTuJefe,
+    calificariaDesempeño: calificariaDesempeño,
+    queTeGustabaMas: queTeGustabaMas,
+    queMenosDisfrutaba: queMenosDisfrutaba,
+    razonPrincipalDejasteTrabajo: razonPrincipalDejasteTrabajo,
+    otraCircunstancia: otraCircunstancia,
+    permisoVerificarReferencia: permisoVerificarReferencia,
+    otrosPuestos: puestos
+  }
+  experiencias.push(experiencia);
+
+  a.append(i);
+  divP.append(div).append(a);
+  li.append(divP);
+  $('#contenedorExperiencias').append(li);
+
+  idexp++;
+}
+
+function borrarReferenciaExtra(idOtraRef) {
+  $('#otrasref-'+idOtraRef).remove();
+  otrasref.splice(idOtraRef, 1);
   idotrasref--;
 }
 
@@ -437,7 +574,7 @@ function agregarReferenciaExtra() {
             '<div class=" col s6">' +
               '<p>'+relacionReferenciaExtra+'</p>' +
             '</div>';
-  let a = $('<a/>', {'onclick': 'borrarOtro("'+idotraref+'")'});
+  let a = $('<a/>', {'onclick': 'borrarReferenciaExtra("'+idotraref+'")'});
   let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
 
   let otraref = {
@@ -451,7 +588,7 @@ function agregarReferenciaExtra() {
   a.append(i);
   divP.append(div).append(a);
   li.append(divP);
-  $('#contenedorIdiomas').append(li);
+  $('#contenedorReferenciasExtra').append(li);
 
   idotraref++;
 }
@@ -485,8 +622,24 @@ function aplicar() {
   let lugarNacimiento = $('#lugarNacimiento').val();
   let edad = $('#edad').val();
   let sexo = $('#sexo').val();
+  let nacionalidad = $('#nacionalidad').val();
+  let rfc = $('#rfc').val();
+  let curp = $('#curp').val();
   let email = $('#email').val();
   let telefono = $('#telefono').val();
+  let celular = $('#celular').val();
+  let direccion = $('#direccion').val();
+  let estadocivil = $('#estadocivil').val();
+  let numhijos = $('#numhijos').val();
+  let edadeshijos = $('#numhijos').val();
+  let facebook = $('#facebook').val();
+  let nombreConyuge = $('#nombreConyuge').val();
+  let ocupacionConyuge = $('#ocupacionConyuge').val();
+  let nombrePadre = $('#nombrePadre').val();
+  let ocupacionPadre = $('#ocupacionPadre').val();
+  let nombreMadre = $('#nombreMadre').val();
+  let ocupacionMadre = $('#ocupacionMadre').val();
+  let CuantoQuieresGanar = $('#CuantoQuieresGanar').val();
 
   let breveResumenCarrera = $('#breveResumenCarrera').val();
   let ComoTeVes = $('#ComoTeVes').val();
@@ -502,17 +655,46 @@ function aplicar() {
   let DescribeLoQueHaces = $('#DescribeLoQueHaces').val();
   let DescribeMayorLogro = $('#DescribeMayorLogro').val();
   let ErrorMasGrande = $('#ErrorMasGrande').val();
-  let CuantoQuieresGanar = $('#CuantoQuieresGanar').val();
+  let VivesZonaHoraria = $('#VivesZonaHoraria').val();
 
   let aspirantes = firebase.database().ref('aspirantes/');
   let datosAspirante = {
     nombre: nombre,
     apellidos: apellidos,
+    lugarNacimiento: lugarNacimiento,
+    edad: edad,
+    sexo: sexo,
+    nacionalidad: nacionalidad,
+    rfc: rfc,
+    curp: curp,
     email: email,
     telefono: telefono,
-    expericiencias: experiencias,
-    estudios: estudios,
-    cuestionario: {
+    celular: celular,
+    direccion: direccion,
+    estadocivil: estadocivil,
+    numhijos: numhijos,
+    edadeshijos: edadeshijos,
+    facebook: facebook,
+    nombreConyuge: nombreConyuge,
+    ocupacionConyuge: ocupacionConyuge,
+    nombrePadre: nombrePadre
+    ocupacionPadre: ocupacionPadre,
+    nombreMadre: nombreMadre,
+    ocupacionMadre: ocupacionMadre,
+    cuantoQuieresGanar: CuantoQuieresGanar,
+    educacion: {
+      primaria: primarias,
+      scundaria: secundarias,
+      preparatoria: preparatorias,
+      universidad: universidades,
+      otrosEstudios: otros,
+      idiomas: idiomas
+    },
+    historialTrabajo: {
+      experienciaLaboral: experiencias,
+      refextras: otrasref
+    }
+    resumen: {
       1: breveResumenCarrera,
       2: ComoTeVes,
       3: EnQueCreesDestacar,
@@ -527,14 +709,14 @@ function aplicar() {
       12: DescribeLoQueHaces,
       13: DescribeMayorLogro,
       14: ErrorMasGrande,
-      15: CuantoQuieresGanar
+      15: VivesZonaHoraria
     }
   };
   let key = aspirantes.push(datosAspirante).getKey();
 
-  let fotoAspirante = $('#fotoAspirante')[0].files[0];
+  let foto = $('#foto')[0].files[0];
   let archivo = $('#curriculum')[0].files[0];
   let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
   storageRef.child('curriculum').put(archivo);
-  storageRef.child('foto').put(fotoAspirante);
+  storageRef.child('foto').put(foto);
 }
