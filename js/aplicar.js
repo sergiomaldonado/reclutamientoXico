@@ -5,6 +5,7 @@ var preparatorias = [];
 var universidades = [];
 var idiomas = [];
 var otros = [];
+var otrasref = [];
 var idexp = 0;
 var idprim = 0;
 var idsec = 0;
@@ -12,6 +13,7 @@ var idprepa = 0;
 var iduniv = 0;
 var idotro = 0;
 var ididioma = 0;
+var idotraref = 0;
 
 function borrarExperiencia(idExp) {
   $('#experiencia-'+idExp).remove();
@@ -335,6 +337,12 @@ function agregarOtro() {
   $('#fechaFinOtro').val('');
 }
 
+function borrarIdioma(idIdioma) {
+  $('#idioma-'+idIdioma).remove();
+  idiomas.splice(idIdioma, 1);
+  ididioma--;
+}
+
 function agregarIdioma() {
   let nombreIdioma = $('#nombreIdioma').val();
   let gradoDominioIdioma = $('#gradoDominioIdioma').val();
@@ -345,7 +353,7 @@ function agregarIdioma() {
   let documentoObtenidoIdioma = $('#documentoObtenidoIdioma').val();
   let comentariosIdioma = $('#comentariosIdioma').val();
 
-  let li = $('<li/>', {'class': 'collection-item', 'id':'otro-'+ididioma});
+  let li = $('<li/>', {'class': 'collection-item', 'id':'idioma-'+ididioma});
   let divP = $('<div/>');
   let div = '<div class="col s6">' +
               '<p>'+nombreIdioma+'</p>' +
@@ -371,7 +379,7 @@ function agregarIdioma() {
             '<div class="col s6">' +
               '<p>'+comentariosIdioma+'</p>' +
             '</div>';
-  let a = $('<a/>', {'onclick': 'borrarOtro("'+ididioma+'")'});
+  let a = $('<a/>', {'onclick': 'borrarIdioma("'+ididioma+'")'});
   let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
 
   let idioma = {
@@ -401,6 +409,51 @@ function agregarIdioma() {
   $('#periodoIdioma').val('');
   $('#documentoObtenidoIdioma').val('');
   $('#comentariosIdioma').val('');
+}
+
+function borrarReferenciaExtra(idOtrasRef) {
+  $('#otrasref-'+idOtrasRef).remove();
+  otrasref.splice(idOtrasRef, 1);
+  idotrasref--;
+}
+
+function agregarReferenciaExtra() {
+  let nombreReferenciaExtra = $('#nombreReferenciaExtra').val();
+  let direccionReferenciaExtra = $('#direccionReferenciaExtra').val();
+  let telefonoReferenciaExtra = $('#telefonoReferenciaExtra').val();
+  let relacionReferenciaExtra = $('#relacionReferenciaExtra').val();
+
+  let li = $('<li/>', {'class': 'collection-item', 'id':'otrasref-'+idotraref});
+  let divP = $('<div/>');
+  let div = '<div class="col s6">' +
+              '<p>'+nombreReferenciaExtra+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+direccionReferenciaExtra+'</p>' +
+            '</div>' +
+            '<div class="col s6">' +
+              '<p>'+telefonoReferenciaExtra+'</p>' +
+            '</div>' +
+            '<div class=" col s6">' +
+              '<p>'+relacionReferenciaExtra+'</p>' +
+            '</div>';
+  let a = $('<a/>', {'onclick': 'borrarOtro("'+idotraref+'")'});
+  let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
+
+  let otraref = {
+    nombre: nombreReferenciaExtra,
+    direccion: direccionReferenciaExtra,
+    telefono: telefonoReferenciaExtra,
+    relacion: relacionReferenciaExtra
+  }
+  otrasref.push(otraref);
+
+  a.append(i);
+  divP.append(div).append(a);
+  li.append(divP);
+  $('#contenedorIdiomas').append(li);
+
+  idotraref++;
 }
 
 $('#foto').change(function(e) {
@@ -439,6 +492,7 @@ function aplicar() {
   let ComoTeVes = $('#ComoTeVes').val();
   let EnQueCreesDestacar = $('#EnQueCreesDestacar').val();
   let EnQueNoEresBueno = $('#EnQueNoEresBueno').val();
+  let RazonesRenunciar = $('#RazonesRenunciar').val();
   let NombraNombreApellidosEmpresa = $('#NombraNombreApellidosEmpresa').val();
   let PorQueBuscasTrabajo = $('#PorQueBuscasTrabajo').val();
   let ComoHasConocido = $('#ComoHasConocido').val();
@@ -463,21 +517,24 @@ function aplicar() {
       2: ComoTeVes,
       3: EnQueCreesDestacar,
       4: EnQueNoEresBueno,
-      5: NombraNombreApellidosEmpresa,
-      6: PorQueBuscasTrabajo,
-      7: ComoHasConocido,
-      8: ValorDiferencialXico,
-      9: EstasFamiliarizado,
-      10: SiPudieseCrearTuPuesto,
-      11: DescribeLoQueHaces,
-      12: DescribeMayorLogro,
-      13: ErrorMasGrande,
-      14: CuantoQuieresGanar
+      5: RazonesRenunciar,
+      6: NombraNombreApellidosEmpresa,
+      7: PorQueBuscasTrabajo,
+      8: ComoHasConocido,
+      9: ValorDiferencialXico,
+      10: EstasFamiliarizado,
+      11: SiPudieseCrearTuPuesto,
+      12: DescribeLoQueHaces,
+      13: DescribeMayorLogro,
+      14: ErrorMasGrande,
+      15: CuantoQuieresGanar
     }
   };
   let key = aspirantes.push(datosAspirante).getKey();
 
+  let fotoAspirante = $('#fotoAspirante')[0].files[0];
   let archivo = $('#curriculum')[0].files[0];
   let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
   storageRef.child('curriculum').put(archivo);
+  storageRef.child('foto').put(fotoAspirante);
 }
