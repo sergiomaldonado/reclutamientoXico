@@ -23,7 +23,7 @@ function mostrarAspirantes() {
                '</div>' +
              '</div>';
     }
-
+    $('#preloader').hide();
     $('#contenedorAspirantes').append(row);
   });
 }
