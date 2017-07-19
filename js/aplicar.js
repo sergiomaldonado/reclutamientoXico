@@ -164,8 +164,8 @@ function agregarPreparatoria() {
     nombre: nombrePreparatoria,
     ciudad: ciudadPreparatoria,
     especialidad: especialidadPreparatoria,
-    fechaInicio: fechaInicioSePreparatoria,
-    fechaFin: fechaFinSePreparatoria
+    fechaInicio: fechaInicioPreparatoria,
+    fechaFin: fechaFinPreparatoria
   }
   preparatorias.push(preparatoria);
 
@@ -207,14 +207,14 @@ function agregarUniversidad() {
             '<div class=" col s6">' +
               '<p>'+ciudadUniversidad+'</p>' +
             '</div>' +
-            '<div class="col s12">' +
-              '<p>'+desempeñoUniversidad+'</p>' +
-            '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaInicioUniversidad+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaFinUniversidad+'</p>' +
+            '</div>' +
+            '<div class="col s12">' +
+              '<p>'+desempeñoUniversidad+'</p>' +
             '</div>';
   let a = $('<a/>', {'onclick': 'borrarUniversidad("'+iduniv+'")'});
   let i = $('<i/>', {'class': 'material-icons', 'html': 'close'});
@@ -230,7 +230,8 @@ function agregarUniversidad() {
   universidades.push(universidad);
 
   a.append(i);
-  divP.append(div).append(a);
+  divP.append(div);
+  divP.append(a);
   li.append(divP);
   $('#contenedorUniversidades').append(li);
 
@@ -268,10 +269,10 @@ function agregarOtro() {
             '<div class=" col s6">' +
               '<p>'+ciudadOtro+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaInicioOtro+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaFinOtro+'</p>' +
             '</div>';
   let a = $('<a/>', {'onclick': 'borrarOtro("'+idotro+'")'});
@@ -361,7 +362,7 @@ function agregarIdioma() {
   li.append(divP);
   $('#contenedorIdiomas').append(li);
 
-  ididoma++;
+  ididioma++;
 
   $('#nombreIdioma').val('').focus();
   $('#gradoDominioIdioma').val('');
@@ -389,10 +390,10 @@ function agregarPuesto() {
   let div = '<div class="col s6">' +
               '<p>'+nombrePuesto+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaInicioPuesto+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaFinPuesto+'</p>' +
             '</div>';
   let a = $('<a/>', {'onclick': 'borrarPuesto("'+idpuesto+'")'});
@@ -411,6 +412,10 @@ function agregarPuesto() {
   $('#contenedorPuestos').append(li);
 
   idpuesto++;
+
+  $('#nombrePuesto').val('').focus();
+  $('#fechaInicioPuesto').val('');
+  $('#fechaFinPuesto').val('');
 }
 
 function borrarExperiencia(idExp) {
@@ -432,7 +437,7 @@ function agregarExperiencia() {
   let fechaInicioEmpresa = $('#fechaInicioEmpresa').val();
   let fechaFinEmpresa = $('#fechaFinEmpresa').val();
   let nombreSupervisor = $('#nombreSupervisor').val();
-  let puestoSupervidor = $('#puestoSupervidor').val();
+  let puestoSupervisor = $('#puestoSupervisor').val();
   let queDiriaTuJefe = $('#queDiriaTuJefe').val();
   let calificariaDesempeño = $('#calificariaDesempeño').val();
   let queTeGustabaMas = $('#queTeGustabaMas').val();
@@ -476,17 +481,17 @@ function agregarExperiencia() {
             '<div class="col s6">' +
               '<p>'+salarioFinalEmpresa+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaInicioEmpresa+'</p>' +
             '</div>' +
-            '<div class="col s6">' +
+            '<div class="col s3">' +
               '<p>'+fechaFinEmpresa+'</p>' +
             '</div>' +
             '<div class="col s6">' +
               '<p>'+nombreSupervisor+'</p>' +
             '</div>' +
             '<div class="col s6">' +
-              '<p>'+puestoSupervidor+'</p>' +
+              '<p>'+puestoSupervisor+'</p>' +
             '</div>' +
             '<div class="col s6">' +
               '<p>'+queDiriaTuJefe+'</p>' +
@@ -528,7 +533,7 @@ function agregarExperiencia() {
     fechaInicio: fechaInicioEmpresa,
     fechaFin: fechaFinEmpresa,
     nombreSupervisor: nombreSupervisor,
-    puestoSupervidor: puestoSupervidor,
+    puestoSupervisor: puestoSupervisor,
     queDiriaTuJefe: queDiriaTuJefe,
     calificariaDesempeño: calificariaDesempeño,
     queTeGustabaMas: queTeGustabaMas,
@@ -546,12 +551,32 @@ function agregarExperiencia() {
   $('#contenedorExperiencias').append(li);
 
   idexp++;
+
+  $('#empresa').val('').focus();
+  $('#dedicaEmpresa').val('');
+  $('#ultimoPuestoEmpresa').val('');
+  $('#direccionEmpresa').val('');
+  $('#ciudadEmpresa').val('');
+  $('#estadoEmpresa').val('');
+  $('#telefonoEmpresa').val('');
+  $('#salarioInicialEmpresa').val('');
+  $('#salarioFinalEmpresa').val('');
+  $('#fechaInicioEmpresa').val('');
+  $('#fechaFinEmpresa').val('');
+  $('#nombreSupervisor').val('');
+  $('#puestoSupervidor').val('');
+  $('#queDiriaTuJefe').val('');
+  $('#calificariaDesempeño').val('');
+  $('#queTeGustabaMas').val('');
+  $('#queMenosDisfrutaba').val('');
+  $('#razonPrincipalDejasteTrabajo').val('');
+  $('#otraCircunstancia').val('');
 }
 
 function borrarReferenciaExtra(idOtraRef) {
   $('#otrasref-'+idOtraRef).remove();
   otrasref.splice(idOtraRef, 1);
-  idotrasref--;
+  idotraref--;
 }
 
 function agregarReferenciaExtra() {
@@ -591,6 +616,11 @@ function agregarReferenciaExtra() {
   $('#contenedorReferenciasExtra').append(li);
 
   idotraref++;
+
+  $('#nombreReferenciaExtra').val('').focus();
+  $('#direccionReferenciaExtra').val('');
+  $('#telefonoReferenciaExtra').val('');
+  $('#relacionReferenciaExtra').val('');
 }
 
 $('#foto').change(function(e) {
@@ -613,7 +643,9 @@ $(document).ready(function(){
   $('#sexo').material_select();
   $('#calificariaDesempeño').material_select();
   $('#razonPrincipalDejasteTrabajo').material_select();
+  $('#fue').material_select();
   $('.collapsible').collapsible();
+  $('.modal').modal();
 });
 
 function aplicar() {
@@ -677,7 +709,7 @@ function aplicar() {
     facebook: facebook,
     nombreConyuge: nombreConyuge,
     ocupacionConyuge: ocupacionConyuge,
-    nombrePadre: nombrePadre
+    nombrePadre: nombrePadre,
     ocupacionPadre: ocupacionPadre,
     nombreMadre: nombreMadre,
     ocupacionMadre: ocupacionMadre,
@@ -693,7 +725,7 @@ function aplicar() {
     historialTrabajo: {
       experienciaLaboral: experiencias,
       refextras: otrasref
-    }
+    },
     resumen: {
       1: breveResumenCarrera,
       2: ComoTeVes,
@@ -719,4 +751,54 @@ function aplicar() {
   let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
   storageRef.child('curriculum').put(archivo);
   storageRef.child('foto').put(foto);
+
+
+  $('#nombre').val('').focus();
+  $('#apellidos').val('');
+  $('#lugarNacimiento').val('');
+  $('#edad').val('');
+  $('#sexo').val('');
+  $('#nacionalidad').val('');
+  $('#rfc').val('');
+  $('#curp').val('');
+  $('#email').val('');
+  $('#telefono').val('');
+  $('#celular').val('');
+  $('#direccion').val('');
+  $('#estadocivil').val('');
+  $('#numhijos').val('');
+  $('#numhijos').val('');
+  $('#facebook').val('');
+  $('#nombreConyuge').val('');
+  $('#ocupacionConyuge').val('');
+  $('#nombrePadre').val('');
+  $('#ocupacionPadre').val('');
+  $('#nombreMadre').val('');
+  $('#ocupacionMadre').val('');
+  $('#CuantoQuieresGanar').val('');
+  $('#breveResumenCarrera').val('');
+  $('#ComoTeVes').val('');
+  $('#EnQueCreesDestacar').val('');
+  $('#EnQueNoEresBueno').val('');
+  $('#RazonesRenunciar').val('');
+  $('#NombraNombreApellidosEmpresa').val('');
+  $('#PorQueBuscasTrabajo').val('');
+  $('#ComoHasConocido').val('');
+  $('#ValorDiferencialXico').val('');
+  $('#EstasFamiliarizado').val('');
+  $('#SiPudieseCrearTuPuesto').val('');
+  $('#DescribeLoQueHaces').val('');
+  $('#DescribeMayorLogro').val('');
+  $('#ErrorMasGrande').val('');
+  $('#VivesZonaHoraria').val('');
+
+  $('#modalFinal').modal('open');
+}
+
+function enviarOpinion() {
+  let breve = $('#breve').val();
+  if(breve.length > 0) {
+    let opinionesProcesoReclutamiento = firebase.database().ref('opinionesProcesoReclutamiento/');
+    opinionesProcesoReclutamiento.push(breve);
+  }
 }

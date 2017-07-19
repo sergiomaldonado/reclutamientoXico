@@ -10,6 +10,28 @@
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1904693696414931'); // Insert your pixel ID here.
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1904693696414931&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- DO NOT MODIFY -->
+    <!-- End Facebook Pixel Code -->
+
+    <script>
+    fbq('track', 'ViewContent', {
+    value: 3.50,
+    currency: 'USD'
+    });
+    </script>
   </head>
   <body>
     <nav role="navigation">
@@ -183,7 +205,7 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input if="nombreMadre" type="text" class="validate">
+                    <input id="nombreMadre" type="text" class="validate">
                     <label for="nombreMadre">Nombre de la madre</label>
                   </div>
                   <div class="input-field col s6">
@@ -277,15 +299,15 @@
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarPreparatoria()">Agregar preparatoria</a>
                     </li>
                   </ul>
-                  <ul id="contenedorUniversidad" class="collection with-header">
+                  <ul id="contenedorUniversidades" class="collection with-header">
                     <li class="collection-header"><h5>Universidad</h5>
                       <div class="input-field col s6">
                         <input id="nombreUniversidad" type="text" class="validate">
                         <label for="nombreUniversidad">Nombre de la universidad</label>
                       </div>
                       <div class="input-field col s6">
-                        <input id="lecenciaturaUniversidad" type="text" class="validate">
-                        <label for="lecenciaturaUniversidad">Licenciatura</label>
+                        <input id="licenciaturaUniversidad" type="text" class="validate">
+                        <label for="licenciaturaUniversidad">Licenciatura</label>
                       </div>
                       <div class="input-field col s6">
                         <input id="ciudadUniversidad" type="text" class="validate">
@@ -331,7 +353,7 @@
                       <a class="waves-effect waves-light btn indigo darken-4" onclick="agregarOtro()">Agregar</a>
                     </li>
                   </ul>
-                  <ul id="contenedorIdioma" class="collection with-header">
+                  <ul id="contenedorIdiomas" class="collection with-header">
                     <li class="collection-header"><h5>Dominio de idiomas</h5>
                       <div class="input-field col s3">
                         <input id="nombreIdioma" type="text" class="validate">
@@ -371,9 +393,9 @@
                 </li>
               </ul>
               <h5 id="titulosVacante" class="white-text center">Experiencia</h5>
-              <ul id="contenedorHistorial" class="collection with-header">
+              <ul class="collection with-header">
                 <li class="collection-header"><h5>Historial de trabajo</h5>
-                  <ul id="contenedorEmpresas" class="collection with-header">
+                  <ul id="contenedorExperiencias" class="collection with-header">
                     <li class="collection-header"><h5>Experiencia laboral</h5>
                       <div class="input-field col s6">
                         <input id="empresa" type="text" class="validate">
@@ -420,11 +442,11 @@
                         <input id="fechaFinEmpresa" type="date" class="datepicker">
                       </div>
                       <div class="input-field col s6">
-                        <input id="nombreSupervidor" type="text" class="validate">
+                        <input id="nombreSupervisor" type="text" class="validate">
                         <label for="nombreSupervisor">Nombre del supervisor o jefe inmediato</label>
                       </div>
                       <div class="input-field col s6">
-                        <input id="puestoSupervidor" type="text" class="validate">
+                        <input id="puestoSupervisor" type="text" class="validate">
                         <label for="puestoSupervidor">Puesto del supervisor o jefe inmediato</label>
                       </div>
                       <div class="input-field col s6">
@@ -597,6 +619,21 @@
             </div>
             <a onclick="aplicar()" class="waves-effect waves-light btn indigo darken-4 btn-large" style="width:100%;">Enviar</a>
           </div>
+          <!-- Modal Structure -->
+          <div id="modalFinal" class="modal">
+            <div class="modal-content">
+              <h4></h4>
+              <p>Hemos recibido tus datos, nos pondremos en contacto contigo para informarte los resultados, te pedimos respondas unas preguntas para mejorar nuestro proceso de reclutamiento:</p>
+              <p>¿Qué te pareció el proceso de reclutamiento? ¿Fue fácil, difícil, tedioso? ¿Te pareció adecuado? ¿En qué tuviste problemas?</p>
+              <div class="input-field col s12">
+                <textarea id="breve" class="materialize-textarea"></textarea>
+                <label for="breve"></label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a onclick="enviarOpinion()" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -606,8 +643,9 @@
           <div class="col l6 s12">
             <h5 class="white-text">Productos Xico</h5>
             <p class="grey-text text-lighten-4">En xico tenemos 35 años trabajando al servicio
-              Del sabor, día con día nos dedicamos a producir frescura y calidad en carnes frías, quesos y salchichonería para tu hogar
+              del sabor, día con día nos dedicamos a producir frescura y calidad en carnes frías, quesos y salchichonería para tu hogar
             </p>
+            <a href="aviso-privacidad.html" class="grey-text text-lighten-4">Aviso de Privacidad</a href="politica-privacidad.html">
           </div>
           <div class="col l3 s12 right">
             <ul>
@@ -626,6 +664,7 @@
     </footer>
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
     <script src="js/init.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
