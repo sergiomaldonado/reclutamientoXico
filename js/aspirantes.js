@@ -6,15 +6,17 @@ function mostrarAspirantes() {
     let row = "";
 
     for(aspirante in aspirantes) {
+
       row += '<div class="col s12">' +
                '<div class="card horizontal">' +
                  '<div class="card-image">' +
-                   '<img src="https://lorempixel.com/200/200/nature/6">' +
+                   '<img id="foto'+aspirante+'">' +
                  '</div>' +
                  '<div class="card-stacked">' +
                    '<div class="card-content">' +
                      '<h5>'+aspirantes[aspirante].nombre +' ' + aspirantes[aspirante].apellidos +'</h5>' +
-                     '<p>Vacante a la que aplicó: Contador</p>' +
+                     '<p>Correo electrónico: ' + aspirantes[aspirante].email +'</p>' +
+                     '<p>Vacante a la que aplicó: Auxiliar contable</p>' +
                    '</div>' +
                    '<div class="card-action">' +
                      '<a href="perfil-completo.html?='+aspirante+'">Ver perfil completo</a>' +
@@ -22,9 +24,14 @@ function mostrarAspirantes() {
                  '</div>' +
                '</div>' +
              '</div>';
+      let storageRef = firebase.storage().ref('aspirantes/' + aspirante + '/foto');
+      storageRef.getDownloadURL().then(function(url) {
+        console.log(url);
+        $('#foto'+aspirante).attr('src', url).show();
+      });
     }
     $('#preloader').hide();
-    $('#contenedorAspirantes').append(row);
+    $('#contenedorAspirantes').empty().append(row);
   });
 }
 
