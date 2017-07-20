@@ -696,7 +696,7 @@ function aplicar() {
     nombreConyuge.length > 0 && ocupacionConyuge.length > 0 && nombrePadre.length > 0 && ocupacionPadre.length > 0 && nombreMadre.length > 0 && ocupacionMadre.length > 0 &&
     CuantoQuieresGanar.length > 0 && primarias.length > 0 && secundarias.length > 0 && preparatorias.length > 0 && universidades.length > 0 && archivo != undefined
   ) {
-    /*let aspirantes = firebase.database().ref('aspirantes/');
+    let aspirantes = firebase.database().ref('aspirantes/');
     let datosAspirante = {
       nombre: nombre,
       apellidos: apellidos,
@@ -806,7 +806,7 @@ function aplicar() {
     $('#ErrorMasGrande').val('');
     $('#VivesZonaHoraria').val('');
 
-    $('#modalFinal').modal('open');*/
+    $('#modalFinal').modal('open');
 
   }
   else {
