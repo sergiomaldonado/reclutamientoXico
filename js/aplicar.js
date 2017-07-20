@@ -662,8 +662,8 @@ function aplicar() {
   let celular = $('#celular').val();
   let direccion = $('#direccion').val();
   let estadocivil = $('#estadocivil').val();
-  let numhijos = $('#numhijos').val();
-  let edadeshijos = $('#numhijos').val();
+  let numHijos = $('#numHijos').val();
+  let edadesHijos = $('#numHijos').val();
   let facebook = $('#facebook').val();
   let nombreConyuge = $('#nombreConyuge').val();
   let ocupacionConyuge = $('#ocupacionConyuge').val();
@@ -688,111 +688,130 @@ function aplicar() {
   let DescribeMayorLogro = $('#DescribeMayorLogro').val();
   let ErrorMasGrande = $('#ErrorMasGrande').val();
   let VivesZonaHoraria = $('#VivesZonaHoraria').val();
-
-  let aspirantes = firebase.database().ref('aspirantes/');
-  let datosAspirante = {
-    nombre: nombre,
-    apellidos: apellidos,
-    lugarNacimiento: lugarNacimiento,
-    edad: edad,
-    sexo: sexo,
-    nacionalidad: nacionalidad,
-    rfc: rfc,
-    curp: curp,
-    email: email,
-    telefono: telefono,
-    celular: celular,
-    direccion: direccion,
-    estadocivil: estadocivil,
-    numhijos: numhijos,
-    edadeshijos: edadeshijos,
-    facebook: facebook,
-    nombreConyuge: nombreConyuge,
-    ocupacionConyuge: ocupacionConyuge,
-    nombrePadre: nombrePadre,
-    ocupacionPadre: ocupacionPadre,
-    nombreMadre: nombreMadre,
-    ocupacionMadre: ocupacionMadre,
-    cuantoQuieresGanar: CuantoQuieresGanar,
-    educacion: {
-      primaria: primarias,
-      scundaria: secundarias,
-      preparatoria: preparatorias,
-      universidad: universidades,
-      otrosEstudios: otros,
-      idiomas: idiomas
-    },
-    historialTrabajo: {
-      experienciaLaboral: experiencias,
-      refextras: otrasref
-    },
-    resumen: {
-      1: breveResumenCarrera,
-      2: ComoTeVes,
-      3: EnQueCreesDestacar,
-      4: EnQueNoEresBueno,
-      5: RazonesRenunciar,
-      6: NombraNombreApellidosEmpresa,
-      7: PorQueBuscasTrabajo,
-      8: ComoHasConocido,
-      9: ValorDiferencialXico,
-      10: EstasFamiliarizado,
-      11: SiPudieseCrearTuPuesto,
-      12: DescribeLoQueHaces,
-      13: DescribeMayorLogro,
-      14: ErrorMasGrande,
-      15: VivesZonaHoraria
-    }
-  };
-  let key = aspirantes.push(datosAspirante).getKey();
-
   let foto = $('#foto')[0].files[0];
   let archivo = $('#curriculum')[0].files[0];
-  let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
-  storageRef.child('curriculum').put(archivo);
-  storageRef.child('foto').put(foto);
+
+  if(foto != undefined && nombre.length > 0 && apellidos.length > 0 && lugarNacimiento.length > 0 && edad.length > 0 && sexo != null && telefono.length > 0 &&
+    celular.length > 0 && direccion.length > 0 && estadocivil.length > 0 && numHijos.length > 0 && edadesHijos.length > 0 && facebook.length > 0 &&
+    nombreConyuge.length > 0 && ocupacionConyuge.length > 0 && nombrePadre.length > 0 && ocupacionPadre.length > 0 && nombreMadre.length > 0 && ocupacionMadre.length > 0 &&
+    CuantoQuieresGanar.length > 0 && primarias.length > 0 && secundarias.length > 0 && preparatorias.length > 0 && universidades.length > 0 && archivo != undefined
+  ) {
+    /*let aspirantes = firebase.database().ref('aspirantes/');
+    let datosAspirante = {
+      nombre: nombre,
+      apellidos: apellidos,
+      lugarNacimiento: lugarNacimiento,
+      edad: edad,
+      sexo: sexo,
+      nacionalidad: nacionalidad,
+      rfc: rfc,
+      curp: curp,
+      email: email,
+      telefono: telefono,
+      celular: celular,
+      direccion: direccion,
+      estadocivil: estadocivil,
+      numHijos: numHijos,
+      edadesHijos: edadesHijos,
+      facebook: facebook,
+      nombreConyuge: nombreConyuge,
+      ocupacionConyuge: ocupacionConyuge,
+      nombrePadre: nombrePadre,
+      ocupacionPadre: ocupacionPadre,
+      nombreMadre: nombreMadre,
+      ocupacionMadre: ocupacionMadre,
+      cuantoQuieresGanar: CuantoQuieresGanar,
+      educacion: {
+        primaria: primarias,
+        scundaria: secundarias,
+        preparatoria: preparatorias,
+        universidad: universidades,
+        otrosEstudios: otros,
+        idiomas: idiomas
+      },
+      historialTrabajo: {
+        experienciaLaboral: experiencias,
+        refextras: otrasref
+      },
+      resumen: {
+        1: breveResumenCarrera,
+        2: ComoTeVes,
+        3: EnQueCreesDestacar,
+        4: EnQueNoEresBueno,
+        5: RazonesRenunciar,
+        6: NombraNombreApellidosEmpresa,
+        7: PorQueBuscasTrabajo,
+        8: ComoHasConocido,
+        9: ValorDiferencialXico,
+        10: EstasFamiliarizado,
+        11: SiPudieseCrearTuPuesto,
+        12: DescribeLoQueHaces,
+        13: DescribeMayorLogro,
+        14: ErrorMasGrande,
+        15: VivesZonaHoraria
+      }
+    };
+    var key = aspirantes.push(datosAspirante).getKey();
+
+    let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
+    storageRef.child('curriculum').put(archivo);
+    let uploadTask = storageRef.child('foto').put(foto);
+    uploadTask.on('state_changed', function(snapshot){
+
+    }, function(error) {
+
+    }, function() {
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      let aspirante = firebase.database().ref('aspirantes/'+key);
+      aspirante.set({fotoUrl: downloadURL});
+    });
 
 
-  $('#nombre').val('').focus();
-  $('#apellidos').val('');
-  $('#lugarNacimiento').val('');
-  $('#edad').val('');
-  $('#sexo').val('');
-  $('#nacionalidad').val('');
-  $('#rfc').val('');
-  $('#curp').val('');
-  $('#email').val('');
-  $('#telefono').val('');
-  $('#celular').val('');
-  $('#direccion').val('');
-  $('#estadocivil').val('');
-  $('#numhijos').val('');
-  $('#numhijos').val('');
-  $('#facebook').val('');
-  $('#nombreConyuge').val('');
-  $('#ocupacionConyuge').val('');
-  $('#nombrePadre').val('');
-  $('#ocupacionPadre').val('');
-  $('#nombreMadre').val('');
-  $('#ocupacionMadre').val('');
-  $('#CuantoQuieresGanar').val('');
-  $('#breveResumenCarrera').val('');
-  $('#ComoTeVes').val('');
-  $('#EnQueCreesDestacar').val('');
-  $('#EnQueNoEresBueno').val('');
-  $('#RazonesRenunciar').val('');
-  $('#NombraNombreApellidosEmpresa').val('');
-  $('#PorQueBuscasTrabajo').val('');
-  $('#ComoHasConocido').val('');
-  $('#ValorDiferencialXico').val('');
-  $('#EstasFamiliarizado').val('');
-  $('#SiPudieseCrearTuPuesto').val('');
-  $('#DescribeLoQueHaces').val('');
-  $('#DescribeMayorLogro').val('');
-  $('#ErrorMasGrande').val('');
-  $('#VivesZonaHoraria').val('');
+    $('#nombre').val('').focus();
+    $('#apellidos').val('');
+    $('#lugarNacimiento').val('');
+    $('#edad').val('');
+    $('#sexo').val('');
+    $('#nacionalidad').val('');
+    $('#rfc').val('');
+    $('#curp').val('');
+    $('#email').val('');
+    $('#telefono').val('');
+    $('#celular').val('');
+    $('#direccion').val('');
+    $('#estadocivil').val('');
+    $('#numhijos').val('');
+    $('#numhijos').val('');
+    $('#facebook').val('');
+    $('#nombreConyuge').val('');
+    $('#ocupacionConyuge').val('');
+    $('#nombrePadre').val('');
+    $('#ocupacionPadre').val('');
+    $('#nombreMadre').val('');
+    $('#ocupacionMadre').val('');
+    $('#CuantoQuieresGanar').val('');
+    $('#breveResumenCarrera').val('');
+    $('#ComoTeVes').val('');
+    $('#EnQueCreesDestacar').val('');
+    $('#EnQueNoEresBueno').val('');
+    $('#RazonesRenunciar').val('');
+    $('#NombraNombreApellidosEmpresa').val('');
+    $('#PorQueBuscasTrabajo').val('');
+    $('#ComoHasConocido').val('');
+    $('#ValorDiferencialXico').val('');
+    $('#EstasFamiliarizado').val('');
+    $('#SiPudieseCrearTuPuesto').val('');
+    $('#DescribeLoQueHaces').val('');
+    $('#DescribeMayorLogro').val('');
+    $('#ErrorMasGrande').val('');
+    $('#VivesZonaHoraria').val('');
 
-  $('#modalFinal').modal('open');
+    $('#modalFinal').modal('open');*/
+
+  }
+  else {
+    $('#modal-no-llenos').modal('open');
+  }
 }
 
 function enviarOpinion() {
