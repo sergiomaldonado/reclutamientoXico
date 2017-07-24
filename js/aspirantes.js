@@ -6,17 +6,11 @@ function mostrarAspirantes() {
     let row = "";
 
     for(aspirante in aspirantes) {
-      let foto;
-      if(aspirantes[aspirante].fotoUrl != "") {
-        foto = '<img src="'+aspirantes[aspirante].fotoUrl+'">';
-      } else {
-        foto = '<img src="../img/recuadro-blanco.png">';
-      }
 
       row += '<div class="col s12">' +
                '<div class="card horizontal">' +
                  '<div style="overflow:hidden !important; max-width: 100px !important; max-heigth: 100px !important;"  class="card-image">' +
-                   foto +
+                    '<img id="foto'+aspirante+'" style="display:none;">'+
                  '</div>' +
                  '<div class="card-stacked">' +
                    '<div class="card-content">' +
@@ -30,6 +24,11 @@ function mostrarAspirantes() {
                  '</div>' +
                '</div>' +
              '</div>';
+
+      /*let storageRef = firebase.storage().ref('aspirantes/'+aspirante+'/foto');
+      storageRef.getDownloadURL().then(function(url) {
+        $('#foto'+aspirante).attr('src', url).show();
+      });*/
     }
     $('#preloader').hide();
     $('#contenedorAspirantes').empty().append(row);
