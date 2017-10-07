@@ -688,14 +688,14 @@ function aplicar() {
   let DescribeMayorLogro = $('#DescribeMayorLogro').val();
   let ErrorMasGrande = $('#ErrorMasGrande').val();
   let VivesZonaHoraria = $('#VivesZonaHoraria').val();
+  let foto = $('#foto')[0].files[0];
   let archivo = $('#curriculum')[0].files[0];
 
-
-  if(nombre.length > 0 && apellidos.length > 0 && lugarNacimiento.length > 0 && edad.length > 0 && sexo != null && telefono.length > 0 &&
-    celular.length > 0 && direccion.length > 0 && estadocivil.length > 0 && facebook.length > 0 && nombrePadre.length > 0 && ocupacionPadre.length > 0 && 
-    nombreMadre.length > 0 && ocupacionMadre.length > 0 && CuantoQuieresGanar.length > 0 && primarias.length > 0 && secundarias.length > 0 && preparatorias.length > 0 && 
-    universidades.length > 0 && archivo != undefined) {
-
+  if(foto != undefined && nombre.length > 0 && apellidos.length > 0 && lugarNacimiento.length > 0 && edad.length > 0 && sexo != null && telefono.length > 0 &&
+    celular.length > 0 && direccion.length > 0 && estadocivil.length > 0 && numHijos.length > 0 && edadesHijos.length > 0 && facebook.length > 0 &&
+    nombreConyuge.length > 0 && ocupacionConyuge.length > 0 && nombrePadre.length > 0 && ocupacionPadre.length > 0 && nombreMadre.length > 0 && ocupacionMadre.length > 0 &&
+    CuantoQuieresGanar.length > 0 && primarias.length > 0 && secundarias.length > 0 && preparatorias.length > 0 && universidades.length > 0 && archivo != undefined
+  ) {
     let aspirantes = firebase.database().ref('aspirantes/');
     let datosAspirante = {
       nombre: nombre,
@@ -751,8 +751,21 @@ function aplicar() {
         15: VivesZonaHoraria
       }
     };
+    var key = aspirantes.push(datosAspirante).getKey();
 
-    aspirantes.push(datosAspirante).getKey();
+    let storageRef = firebase.storage().ref('aspirantes'+'/'+key);
+    storageRef.child('curriculum').put(archivo);
+    let uploadTask = storageRef.child('foto').put(foto);
+    uploadTask.on('state_changed', function(snapshot){
+
+    }, function(error) {
+
+    }, function() {
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      let aspirante = firebase.database().ref('aspirantes/'+key);
+      aspirante.set({fotoUrl: downloadURL});
+    });
+
 
     $('#nombre').val('').focus();
     $('#apellidos').val('');
@@ -792,20 +805,8 @@ function aplicar() {
     $('#DescribeMayorLogro').val('');
     $('#ErrorMasGrande').val('');
     $('#VivesZonaHoraria').val('');
-    $('#curriculum')[0].files[0] = undefined;
 
     $('#modalFinal').modal('open');
-
-    primarias = [];
-    secundarias = [];
-    preparatorias = [];
-    universidades = [];
-    otros = [];
-    idiomas = [];
-    experiencias = [];
-    puestos = [];
-    otrasref = [];
-
 
   }
   else {

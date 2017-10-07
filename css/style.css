@@ -104,6 +104,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002e7d', end
 
 
 }
+#txt-dv{
+  transform:translate(-120px, 125px);
+}
 
 #img-prod{
   width:100%;
@@ -213,6 +216,12 @@ p {
     position: absolute;
     top: 40%;
   }
+  #txt-dv{
+    transform:translate(0px, 15px);
+  }
+  #img-dv{
+    display: none;
+  }
   #index-banner .section {
     top: 10%;
     height: 600px;
@@ -246,6 +255,9 @@ p {
   #txt-yap{
 
      color:white; font-size:30px; font-weight:200;
+  }
+  #img-dv{
+    display: none;
   }
   #xico-txt{
   font-size:55px; font-weight:700;
@@ -289,6 +301,9 @@ p {
      color:white; font-size:45px; font-weight:200;
      margin-left: 30px;
   }
+  #img-dv{
+    display: none;
+  }
   #section-text{
     height: -20px;
     margin-top: -120px;
@@ -325,6 +340,9 @@ p {
     top: 0;
 
 
+  }
+  #img-dv{
+    display: none;
   }
   #img-prod{
     width:70%;

@@ -10,12 +10,17 @@
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="css/loader.css">
+    <script type="text/javascript">
+    $(document).ready(function(){
+      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
+    </script>
   </head>
   <body>
     <nav role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="index.html" class="brand-logo"><img src="images/logo.png"></a>
+        <a id="logo-container" href="#" class="brand-logo"><img src="images/logo.png"></a>
         <ul  style="margin-top:100px;" id="dropdown1" class="dropdown-content light-blue">
           <li><a style="padding-top:15px; color:white; height:50px;" href="#!">Jamones</a></li>
           <li class="divider"></li>
@@ -72,62 +77,15 @@
     </div>
     <div id="section-catalogo" class="section no-pad-bot">
       <div class="section">
-        <h3 id="titulosBacante" class="white-text center">Vacantes</h3>
-        <div class="row center" style="color:#757575;">
-          <div class="col s2"></div>
-          <!--<div id="preloader">
-            <div class="progress">
-              <div class="indeterminate"></div>
-            </div>
-          </div>-->
-          <div id="contenedorVacantes" class="col s8 left-align">
-              <div class="col s12"><!--Auxiliar contable-->
-                <div class="card horizontal">
-                  <div style="overflow:hidden !important;"  class="card-image">
-                    <img style="max-width:200px; max-height:200px;" src="./images/mujer-auxiliar-contable.png">
-                  </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                      <p style="padding-bottom: 5px;"><span style="background-color: #FD5200; padding: 10px; color: white; font-size: 20px; border-radius: 3px;">Auxliar contable</span></p>
-                      <p>Tus tareas serán apoyar el área de Contabilidad con el objetivo de clasificar, ordenar y registrar información contable. Serás una parte muy importante de la empresa, por lo que esperamos compromiso y responsabilidad.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="vacante.html?id=auxiliar_contable">Ir a la vacante</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col s12"><!--Promotor-->
-                <div class="card horizontal">
-                  <div style="overflow:hidden !important;"  class="card-image">
-                    <img style="max-width:200px; max-height:200px;" src="./images/promotores.png">
-                  </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                      <p style="padding-bottom: 5px;"><span style="background-color: #FD5200; padding: 10px; color: white; font-size: 20px; border-radius: 3px;">Promotoría</span></p>
-                      <p style="line-height: 1.3;">Serás una parte muy importante de la empresa por lo que esperamos mucho de ti, queremos, que al igual que nosotros puedas ganar y estar satisfecha con lo que recibes de la empresa, por lo que trabajarás por metas, esperamos que tengas iniciativa y el deseo de superarte continuamente.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="vacante.html?id=promotor">Ir a la vacante</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col s12"><!--Capturista-->
-                <div class="card horizontal">
-                  <div style="overflow:hidden !important;"  class="card-image">
-                    <img style="max-width:200px; max-height:200px;" src="./images/capturista.png">
-                  </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                      <p style="padding-bottom: 5px;"><span style="background-color: #FD5200; padding: 10px; color: white; font-size: 20px; border-radius: 3px;">Capturista de datos</span></p>
-                      <p>Serás una parte importante de la empresa, esperamos disposición e iniciativa para apoyar y asistir diferentes áreas con tu trabajo.</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="vacante.html?id=capturista">Ir a la vacante</a>
-                    </div>
-                  </div>
-                </div>
+        <div id="contenedorVacante" class="center-align">
+          <div id="loader" class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+              </div><div class="gap-patch">
+                <div class="circle"></div>
+              </div><div class="circle-clipper right">
+                <div class="circle"></div>
               </div>
             </div>
           </div>
@@ -143,25 +101,27 @@
               del sabor, día con día nos dedicamos a producir frescura y calidad en carnes frías, quesos y salchichonería para tu hogar
             </p>
             <a href="aviso-privacidad.html" class="grey-text text-lighten-4">Aviso de Privacidad</a href="politica-privacidad.html">
-          </div>
-          <div class="col l3 s12 right">
-            <ul>
-              <li><i style="" class="material-icons left">people</i><a class="white-text" href="#!">Recursos Humanos</a></li>
-              <li style="margin-left:-0px; margin-top:10px;" ><i class="material-icons left">business</i><a class="white-text" style="" href="#!">Empresa</a></li>
-              <li style="margin-left:-0px; margin-top:10px;"><i class="material-icons left">phone</i><a class="white-text" href="#!">01 (831) 23 38200</a></li>
-              <li style="margin-left:-0px; margin-top:10px;"><i class="material-icons left">mail</i><a class="white-text" href="#!">info@productosxico.com.mx</a></li>
-              <li style="margin-left:-0px; margin-top:05px;"><a class="" href="#!">2016 - Productos Alimenticios Xico S.A. de C.V. © Copyright</a></li>
-            </ul>
+            </div>
+            <div class="col l3 s12 right">
+              <ul>
+                <li><i style="" class="material-icons left">people</i><a class="white-text" href="#!">Recursos Humanos</a></li>
+                <li style="margin-left:-0px; margin-top:10px;" ><i class="material-icons left">business</i><a class="white-text" style="" href="#!">Empresa</a></li>
+                <li style="margin-left:-0px; margin-top:10px;"><i class="material-icons left">phone</i><a class="white-text" href="#!">01 (831) 23 38200</a></li>
+                <li style="margin-left:-0px; margin-top:10px;"><i class="material-icons left">mail</i><a class="white-text" href="#!">info@productosxico.com.mx</a></li>
+                <li style="margin-left:-0px; margin-top:05px;"><a class="" href="#!">2016 - Productos Alimenticios Xico S.A. de C.V. © Copyright</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="footer-copyright  light-blue">
-        <div class="container">Diseñado por <a class="brown-text text-lighten-3" href="http://agenciaaxios.com">Axios Agencia Digital</a></div>
-      </div>
-    </footer>
+        <div class="footer-copyright  light-blue">
+          <div class="container">
+            Diseñado por <a class="brown-text text-lighten-3" href="http://materializecss.com">Axios Agencia Digital</a>
+          </div>
+        </div>
+      </footer>
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script>
@@ -176,5 +136,6 @@
       };
       firebase.initializeApp(config);
     </script>
+    <script src="js/vacanteTemporal.js"></script>
   </body>
 </html>
